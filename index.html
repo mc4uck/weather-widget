@@ -3,6 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <title>Sinoptik Widget</title>
+  <script>
+  function applySystemTheme() {
+    const informer = document.querySelector('.sin-informer');
+    if (!informer) return;
+
+    // Видаляємо попередню тему
+    informer.classList.remove('sin-informer_theme-light', 'sin-informer_theme-dark');
+
+    // Визначаємо, яку тему використовує система
+    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    informer.classList.add(isDark ? 'sin-informer_theme-dark' : 'sin-informer_theme-light');
+  }
+
+  // Застосувати тему при завантаженні
+  applySystemTheme();
+
+  // Слухаємо зміни системної теми
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applySystemTheme);
+</script>
+
 </head>
 <body>
  <link rel="stylesheet" href="https://sinoptik.ua/resources/informer/css/informer.css">
